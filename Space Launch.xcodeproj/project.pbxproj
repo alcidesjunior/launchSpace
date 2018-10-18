@@ -30,6 +30,7 @@
 		1AE6BD192178B584009EE049 /* MissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD182178B584009EE049 /* MissionDetailsViewController.swift */; };
 		1AE6BD1C2178B767009EE049 /* MissionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD1B2178B767009EE049 /* MissionDelegate.swift */; };
 		1AE6BD1E2178C4F0009EE049 /* MissionDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD1D2178C4F0009EE049 /* MissionDetailsTableViewCell.swift */; };
+		1AE6BD202178CD92009EE049 /* ExtensionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD1F2178CD92009EE049 /* ExtensionImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		1AE6BD182178B584009EE049 /* MissionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsViewController.swift; sourceTree = "<group>"; };
 		1AE6BD1B2178B767009EE049 /* MissionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDelegate.swift; sourceTree = "<group>"; };
 		1AE6BD1D2178C4F0009EE049 /* MissionDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		1AE6BD1F2178CD92009EE049 /* ExtensionImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				1AB1DCA1217761EA00544832 /* Assets.xcassets */,
 				1AB1DCA3217761EA00544832 /* LaunchScreen.storyboard */,
 				1AB1DCA6217761EA00544832 /* Info.plist */,
+				1AE6BD1F2178CD92009EE049 /* ExtensionImageView.swift */,
 			);
 			path = "Space Launch";
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				1AB1DCF321776BBF00544832 /* MissionsTableViewCell.swift in Sources */,
 				1AE6BD192178B584009EE049 /* MissionDetailsViewController.swift in Sources */,
 				1AE6BD1E2178C4F0009EE049 /* MissionDetailsTableViewCell.swift in Sources */,
+				1AE6BD202178CD92009EE049 /* ExtensionImageView.swift in Sources */,
 				1AE6BD1C2178B767009EE049 /* MissionDelegate.swift in Sources */,
 				1AB1DCF621776F2700544832 /* MissionsAPI.swift in Sources */,
 			);
