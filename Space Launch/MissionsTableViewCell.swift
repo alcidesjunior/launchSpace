@@ -13,6 +13,14 @@ class MissionsTableViewCell: UITableViewCell {
     @IBOutlet weak private var imgDetailsMission: UIImageView!
     @IBOutlet weak private var missionName: UILabel!
     @IBOutlet weak private var missionYear: UILabel!
+    var searchWasActivate : Bool = false
+    var filteredMission : MissionStruct?{
+        didSet{
+            if filteredMission != nil{
+                self.updateView()
+            }
+        }
+    }
     var mission : MissionStruct? {
         didSet {
             if mission != nil {
@@ -22,19 +30,15 @@ class MissionsTableViewCell: UITableViewCell {
     }
     
     private func updateView() {
-        missionName.text = mission?.missionName
-        missionYear.text = mission?.launchYear
-        imgDetailsMission.downloadedFrom(link: mission?.links?.missionPatchSmall)
-//        if let url1 = mission?.links?.missionPatchSmall{
-//            if let url2 = URL(string: ( (url1) )){
-//                MissionsAPI.sharedInstance.getData(from:  url2) { data, response, error in
-//                    guard let data = data, error == nil else { return }
-//                    DispatchQueue.main.async() {
-//                        self.imgDetailsMission.image = UIImage(data: data)
-//                    }
-//                }
-//            }
-//        }
+        if searchWasActivate {
+            missionName.text = filteredMission?.missionName
+            missionYear.text = filteredMission?.launchYear
+            imgDetailsMission.downloadedFrom(link: filteredMission?.links?.missionPatchSmall)
+        }else{
+            missionName.text = mission?.missionName
+            missionYear.text = mission?.launchYear
+            imgDetailsMission.downloadedFrom(link: mission?.links?.missionPatchSmall)
+        }
     }
     
     

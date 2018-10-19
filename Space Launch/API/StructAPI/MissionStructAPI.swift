@@ -87,9 +87,11 @@ struct FirstStage: Codable {
 
 struct Core: Codable {
     let coreSerial: String?
+    let reused: Bool?
     
     enum CodingKeys: String, CodingKey {
         case coreSerial = "core_serial"
+        case reused = "reused"
     }
 }
 
@@ -103,9 +105,11 @@ struct Payload: Codable {
     let reused: Bool?
     let customers: [String?]
     let nationality, manufacturer: String?
+    let payloadType: String?
     
     enum CodingKeys: String, CodingKey {
         case payloadID = "payload_id"
+        case payloadType = "payload_type"
         case reused, customers, nationality, manufacturer
     }
 }

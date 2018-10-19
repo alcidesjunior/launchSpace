@@ -1,26 +1,24 @@
 //
-//  MissionsAPI.swift
+//  RocketAPI.swift
 //  Space Launch
 //
-//  Created by Alcides Junior on 17/10/18.
+//  Created by Alcides Junior on 19/10/18.
 //  Copyright © 2018 Alcides Junior. All rights reserved.
 //
 
 import Foundation
-
-public class MissionsAPI: NSObject{
-    public static let sharedInstance = MissionsAPI()
-    let url:String?
+public class RocketAPI: NSObject{
+    public static let sharedInstance = RocketAPI()
+    var url: String?
     
-    private override init(){
-       self.url = "https://api.spacexdata.com/v3/launches"
-    }
+    private override init(){}
     
-    func getMissions(completion: @escaping([MissionStruct])->(Void)){
+    func getMissions(id: String,completion: @escaping([MissionStruct])->(Void)){
+        self.url = "https://api.spacexdata.com/v3/rockets/\(id)"
         let urlPath = URL(string: self.url!)!
         var request = URLRequest(url: urlPath)
         request.httpMethod = "GET"
-  
+        
         let getTask = URLSession.shared.dataTask(with: request){ (data,response,error) in
             if error != nil {print("error request")}
             if data != nil {
@@ -29,7 +27,7 @@ public class MissionsAPI: NSObject{
                     let result = try JSONSerialization.jsonObject(with: data!, options: [])
                     let responseData = try JSONSerialization.data(withJSONObject: result, options: .prettyPrinted)
                     let missions = try JSONDecoder().decode([MissionStruct].self, from: responseData)
-
+                    
                     DispatchQueue.main.async {
                         completion(missions)
                     }
@@ -45,8 +43,4 @@ public class MissionsAPI: NSObject{
             getTask.resume()
         }
     }
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
-    
 }

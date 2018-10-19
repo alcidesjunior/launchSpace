@@ -10,16 +10,28 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    @IBOutlet weak var searchBarMission: UISearchBar!
     var loading = UIActivityIndicatorView(style: .gray)
     var missions: [MissionStruct] = []
     var selectedMission: MissionStruct?
-    @IBOutlet weak var missionTableView: UITableView!
+    var searchActive : Bool = false
+    var filtered:[MissionStruct] = []
+    
+    @IBOutlet weak var missionTableView: UITableView!{
+        didSet{
+          missionTableView.rowHeight = 70
+        }
+    }
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         missionTableView.delegate = self
         missionTableView.dataSource = self
-        missionTableView.rowHeight = 70
+        searchBarMission.delegate = self
+        
         self.spinner()
         self.loading.startAnimating()
         MissionsAPI.sharedInstance.getMissions(completion: { missionsJson in
@@ -27,6 +39,20 @@ class ViewController: UIViewController {
             self.missionTableView.reloadData()
             self.loading.stopAnimating()
         })
+        
+        
+        
+    }
+    func addTap(){
+        print("adicionou===========")
+        view.addGestureRecognizer(self.tap)
+    }
+    func removeTap(){
+        print("==========removeu")
+        view.removeGestureRecognizer(self.tap)
+    }
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
     }
     func spinner(){
         loading.translatesAutoresizingMaskIntoConstraints = false
@@ -43,46 +69,62 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, MissionDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.missions.count)
+        if(searchActive) {
+            return self.filtered.count
+        }
+    
         return self.missions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = missionTableView.dequeueReusableCell(withIdentifier: "missionCellID") as! MissionsTableViewCell
-        cell.mission = missions[indexPath.row]
+        cell.searchWasActivate = searchActive
+        if searchActive{
+            cell.filteredMission = self.filtered[indexPath.row]
+        }else{
+            cell.mission = missions[indexPath.row]
+        }
 
-        
-//        if let url1 = currentMission.links?.missionPatchSmall{
-//            if let url2 = URL(string: ( (url1) )){
-//                MissionsAPI.sharedInstance.getData(from:  url2) { data, response, error in
-//                    guard let data = data, error == nil else { return }
-////                    print("Download Finished")
-//                    
-//                    DispatchQueue.main.async() {
-//                        cell.imgDetailsMission.image = UIImage(data: data)
-//                    }
-//                }
-//            }
-//        }
-        
-//        cell.missionName.text = currentMission.missionName
-//        cell.missionYear.text = currentMission.launchYear
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedMission = self.missions[indexPath.item]
+        if searchActive{
+            self.selectedMission = self.filtered[indexPath.item]
+        }else{
+            self.selectedMission = self.missions[indexPath.item]
+        }
+
         guard let controller = storyboard?.instantiateViewController(withIdentifier: "MissionDetails") as? MissionDetailsViewController else {return}
         controller.delegateMission = self
         navigationController?.pushViewController(controller, animated: true)
         
-//        performSegue(withIdentifier: "missionDetailsSegue", sender: nil)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let destination = segue.destination as? MissionDetailsViewController else {return}
-//        destination.delegateMission = self
-//
-//    }
 }
 
+
+extension ViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        self.filtered = missions.filter({ (text) -> Bool in
+            return text.missionName!.range(of: searchText, options: [ .caseInsensitive]) != nil
+        })
+        searchActive = !self.filtered.isEmpty
+        self.missionTableView.reloadData()
+    }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false
+        
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+    
+}

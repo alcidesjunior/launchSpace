@@ -12,19 +12,28 @@ class MissionDetailsViewController: UIViewController {
 
     var delegateMission: MissionDelegate?
     @IBOutlet weak var missionImage: UIImageView!
-    @IBOutlet weak var missionDetailsTableView: UITableView!
+    @IBOutlet weak var missionDetailsTableView: UITableView!{
+        didSet{
+            missionDetailsTableView.rowHeight = 70
+        }
+    }
+    var selectedRocket: MissionStruct?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.delegateMission?.getMission().missionName
         self.missionImage.downloadedFrom(link: self.delegateMission?.getMission().links?.missionPatch)
         missionDetailsTableView.delegate = self
         missionDetailsTableView.dataSource = self
-        missionDetailsTableView.rowHeight = 70
     }
 
 }
 //detailsMissionCellID
-extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSource{
+extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSource,RocketDelegate{
+    func getRocketId() -> MissionStruct {
+        return self.selectedRocket!
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -57,13 +66,17 @@ extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSourc
             cell.labelSubTitlte.text = ""
             cell.accessoryType = .disclosureIndicator
         default:
-            0
+            cell.labelSubTitlte.text = "Vazio???"
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.item == 4{
-            print("linha certa", self.delegateMission?.getMission().rocket?.rocketID)
+            self.selectedRocket = self.delegateMission?.getMission()
+            guard let RocketController = storyboard?.instantiateViewController(withIdentifier: "RocketViewController") as? RocketViewController else {return}
+            RocketController.delegateRocket = self.selectedRocket
+            navigationController?.pushViewController(RocketController, animated: true)
+            
         }
     }
 

@@ -31,6 +31,9 @@
 		1AE6BD1C2178B767009EE049 /* MissionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD1B2178B767009EE049 /* MissionDelegate.swift */; };
 		1AE6BD1E2178C4F0009EE049 /* MissionDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD1D2178C4F0009EE049 /* MissionDetailsTableViewCell.swift */; };
 		1AE6BD202178CD92009EE049 /* ExtensionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD1F2178CD92009EE049 /* ExtensionImageView.swift */; };
+		1AE6BD222179F947009EE049 /* RocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD212179F947009EE049 /* RocketDelegate.swift */; };
+		1AE6BD242179FD59009EE049 /* RocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD232179FD59009EE049 /* RocketViewController.swift */; };
+		1AE6BD26217A0186009EE049 /* RocketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD25217A0186009EE049 /* RocketTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +126,9 @@
 		1AE6BD1B2178B767009EE049 /* MissionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDelegate.swift; sourceTree = "<group>"; };
 		1AE6BD1D2178C4F0009EE049 /* MissionDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		1AE6BD1F2178CD92009EE049 /* ExtensionImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionImageView.swift; sourceTree = "<group>"; };
+		1AE6BD212179F947009EE049 /* RocketDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketDelegate.swift; sourceTree = "<group>"; };
+		1AE6BD232179FD59009EE049 /* RocketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketViewController.swift; sourceTree = "<group>"; };
+		1AE6BD25217A0186009EE049 /* RocketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,18 +190,20 @@
 		1AB1DC99217761E700544832 /* Space Launch */ = {
 			isa = PBXGroup;
 			children = (
+				1AE6BD29217A042A009EE049 /* Extensions */,
 				1AE6BD1A2178B74C009EE049 /* Protocols */,
 				1AB1DCF421776F0900544832 /* API */,
 				1AB1DC9A217761E700544832 /* AppDelegate.swift */,
 				1AB1DC9C217761E700544832 /* ViewController.swift */,
 				1AE6BD182178B584009EE049 /* MissionDetailsViewController.swift */,
 				1AB1DC9E217761E700544832 /* Main.storyboard */,
+				1AE6BD25217A0186009EE049 /* RocketTableViewCell.swift */,
+				1AE6BD232179FD59009EE049 /* RocketViewController.swift */,
 				1AE6BD1D2178C4F0009EE049 /* MissionDetailsTableViewCell.swift */,
 				1AB1DCF221776BBF00544832 /* MissionsTableViewCell.swift */,
 				1AB1DCA1217761EA00544832 /* Assets.xcassets */,
 				1AB1DCA3217761EA00544832 /* LaunchScreen.storyboard */,
 				1AB1DCA6217761EA00544832 /* Info.plist */,
-				1AE6BD1F2178CD92009EE049 /* ExtensionImageView.swift */,
 			);
 			path = "Space Launch";
 			sourceTree = "<group>";
@@ -264,8 +272,17 @@
 			isa = PBXGroup;
 			children = (
 				1AE6BD1B2178B767009EE049 /* MissionDelegate.swift */,
+				1AE6BD212179F947009EE049 /* RocketDelegate.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1AE6BD29217A042A009EE049 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1AE6BD1F2178CD92009EE049 /* ExtensionImageView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,10 +482,13 @@
 				1AB1DC9B217761E700544832 /* AppDelegate.swift in Sources */,
 				1AB1DCF321776BBF00544832 /* MissionsTableViewCell.swift in Sources */,
 				1AE6BD192178B584009EE049 /* MissionDetailsViewController.swift in Sources */,
+				1AE6BD222179F947009EE049 /* RocketDelegate.swift in Sources */,
 				1AE6BD1E2178C4F0009EE049 /* MissionDetailsTableViewCell.swift in Sources */,
+				1AE6BD242179FD59009EE049 /* RocketViewController.swift in Sources */,
 				1AE6BD202178CD92009EE049 /* ExtensionImageView.swift in Sources */,
 				1AE6BD1C2178B767009EE049 /* MissionDelegate.swift in Sources */,
 				1AB1DCF621776F2700544832 /* MissionsAPI.swift in Sources */,
+				1AE6BD26217A0186009EE049 /* RocketTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
