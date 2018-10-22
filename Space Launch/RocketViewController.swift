@@ -53,7 +53,9 @@ extension RocketViewController: UITableViewDelegate,UITableViewDataSource{
             cell?.labelSubtitle.text = self.delegateRocket?.rocket?.firstStage?.cores[0]?.coreSerial
         case 3:
             cell?.labelTitle.text = "Reused"
-            cell?.labelSubtitle.text = ((self.delegateRocket?.rocket?.firstStage?.cores[0]?.reused)! ? "Yes" : "No")
+            if let isReused = self.delegateRocket?.rocket?.firstStage?.cores[0]?.reused{
+                cell?.labelSubtitle.text = ((isReused) ? "Yes" : "No")
+            }
         case 4:
             cell?.labelTitle.text = "Nationality"
             cell?.labelSubtitle.text = self.delegateRocket?.rocket?.secondStage?.payloads[0]?.nationality

@@ -25,10 +25,40 @@ class MissionDetailsViewController: UIViewController {
         self.missionImage.downloadedFrom(link: self.delegateMission?.getMission().links?.missionPatch)
         missionDetailsTableView.delegate = self
         missionDetailsTableView.dataSource = self
+//        register for use in peek and pop
+        if traitCollection.forceTouchCapability == .available{
+            registerForPreviewing(with: self, sourceView: view)
+        }else{
+            print("3D Touch Not Available")
+        }
     }
 
 }
-//detailsMissionCellID
+extension MissionDetailsViewController : UIViewControllerPreviewingDelegate{
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let convertedLocation = view.convert(location, to: missionImage)
+        if missionImage.bounds.contains(convertedLocation){
+            let peekView =  self.storyboard?.instantiateViewController(withIdentifier: "PeekvcID") as? PeekViewController
+            if let currentImage = missionImage{
+                if let peek = peekView{
+                    peek.image = currentImage.image
+                    peek.label = self.delegateMission?.getMission().missionName
+                }
+            }
+            peekView?.preferredContentSize = CGSize(width: 300, height: 300)
+            previewingContext.sourceRect = missionImage.frame
+            return peekView
+        }else{
+            return nil
+        }
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        //present(viewControllerToCommit,animated: true)
+    }
+    
+    
+}
 extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSource,RocketDelegate{
     func getRocketId() -> MissionStruct {
         return self.selectedRocket!
@@ -60,7 +90,11 @@ extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSourc
             cell.labelSubTitlte.text = (self.delegateMission?.getMission().launchSuccess==true ? "Yes" : "No")
         case 3:
             cell.labelTitle.text = "Details"
-            cell.labelSubTitlte.text = self.delegateMission?.getMission().details
+            if let missionDetail = self.delegateMission?.getMission().details {
+                cell.labelSubTitlte.text = missionDetail
+            }else{
+                cell.labelSubTitlte.text = "Don't have details."
+            }
         case 4:
             cell.labelTitle.text = "About Rocket"
             cell.labelSubTitlte.text = ""
