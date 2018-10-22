@@ -28,11 +28,43 @@ class RocketViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.rocketTableView.delegate = self
         self.rocketTableView.dataSource = self
         self.title = self.delegateRocket?.rocket?.rocketName
+        
+        if traitCollection.forceTouchCapability == .available{
+            registerForPreviewing(with: self, sourceView: view)
+        }else{
+            print("3D Touch Not Available")
+        }
     }
 
+}
+extension RocketViewController: UIViewControllerPreviewingDelegate{
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let convertedLocation = view.convert(location, to: rocketImage)
+        if rocketImage.bounds.contains(convertedLocation){
+            let peekView =  self.storyboard?.instantiateViewController(withIdentifier: "PeekvcID") as? PeekViewController
+            if let currentImage = rocketImage{
+                if let peek = peekView{
+                    peek.image = currentImage.image
+                    peek.label = self.delegateRocket?.rocket?.rocketName
+                }
+            }
+            peekView?.preferredContentSize = CGSize(width: 300, height: 300)
+            previewingContext.sourceRect = rocketImage.frame
+            return peekView
+        }else{
+            return nil
+        }
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        
+    }
+    
+    
 }
 extension RocketViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -141,7 +141,7 @@
                                     <constraint firstAttribute="width" constant="131" id="aEt-f8-yCf"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="About mission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2N-LW-BIa">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About mission" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2N-LW-BIa">
                                 <rect key="frame" x="7" y="236" width="87" height="15"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -152,7 +152,9 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="y0S-9Q-YU7" firstAttribute="top" secondItem="xgG-6r-WKu" secondAttribute="top" constant="29" id="IL2-lV-CTO"/>
+                            <constraint firstItem="xgG-6r-WKu" firstAttribute="trailing" secondItem="c2N-LW-BIa" secondAttribute="trailing" constant="281" id="Wx7-Gb-maj"/>
                             <constraint firstItem="af4-io-eey" firstAttribute="bottom" secondItem="xgG-6r-WKu" secondAttribute="bottom" id="iyO-vq-TCB"/>
+                            <constraint firstItem="c2N-LW-BIa" firstAttribute="leading" secondItem="xgG-6r-WKu" secondAttribute="leading" constant="7" id="jbT-By-iCo"/>
                             <constraint firstItem="af4-io-eey" firstAttribute="leading" secondItem="xgG-6r-WKu" secondAttribute="leading" id="k1q-De-NDJ"/>
                             <constraint firstItem="af4-io-eey" firstAttribute="top" secondItem="y0S-9Q-YU7" secondAttribute="bottom" constant="29" id="reI-mc-QAP"/>
                             <constraint firstItem="y0S-9Q-YU7" firstAttribute="centerX" secondItem="xgG-6r-WKu" secondAttribute="centerX" id="uoH-Oa-rxP"/>
@@ -182,7 +184,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TlI-I2-Y7M">
                                 <rect key="frame" x="0.0" y="246" width="375" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5I5-JI-awe">
@@ -195,7 +197,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.21649324893951416" green="0.18200075626373291" blue="0.28236395120620728" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="5I5-JI-awe" firstAttribute="leading" secondItem="S2D-uD-Q0h" secondAttribute="leading" constant="78" id="556-Fl-RJ3"/>
                             <constraint firstItem="TlI-I2-Y7M" firstAttribute="top" secondItem="5I5-JI-awe" secondAttribute="bottom" constant="7" id="8O6-CZ-UdG"/>
@@ -285,10 +287,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.21649324893951416" green="0.18200075626373291" blue="0.28236395120620728" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="wWm-Rr-W8X" firstAttribute="leading" secondItem="2KT-7J-15Q" secondAttribute="leading" constant="6" id="3rl-nb-Y0E"/>
                             <constraint firstItem="737-7P-Ie2" firstAttribute="centerX" secondItem="c7h-Ou-YkV" secondAttribute="centerX" id="DS6-9M-KPP"/>
                             <constraint firstItem="c7h-Ou-YkV" firstAttribute="top" secondItem="737-7P-Ie2" secondAttribute="bottom" constant="27" id="DpZ-0u-NCG"/>
                             <constraint firstItem="c7h-Ou-YkV" firstAttribute="leading" secondItem="I9C-Tw-3FT" secondAttribute="leading" id="TEj-Vk-eTL"/>
                             <constraint firstItem="737-7P-Ie2" firstAttribute="leading" secondItem="2KT-7J-15Q" secondAttribute="leading" constant="122" id="VnE-3Z-own"/>
+                            <constraint firstItem="2KT-7J-15Q" firstAttribute="trailing" secondItem="wWm-Rr-W8X" secondAttribute="trailing" constant="290" id="Xje-Ym-h2B"/>
                             <constraint firstItem="c7h-Ou-YkV" firstAttribute="bottom" secondItem="2KT-7J-15Q" secondAttribute="bottom" id="ZAG-cm-nQ1"/>
                             <constraint firstItem="wWm-Rr-W8X" firstAttribute="top" secondItem="2KT-7J-15Q" secondAttribute="top" constant="167" id="gCc-da-qfp"/>
                             <constraint firstItem="2KT-7J-15Q" firstAttribute="trailing" secondItem="737-7P-Ie2" secondAttribute="trailing" constant="122" id="nQi-HJ-ra8"/>

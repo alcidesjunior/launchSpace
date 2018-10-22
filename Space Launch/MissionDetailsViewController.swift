@@ -18,6 +18,13 @@ class MissionDetailsViewController: UIViewController {
         }
     }
     var selectedRocket: MissionStruct?
+//    lazy override var previewActionItems: [UIPreviewActionItem] = {
+//        let cancelAction = UIPreviewAction.init(title: "Cancel", style: .cancel, handler: { (UIPreviewAction, UIViewController) in
+//            self.dismiss()
+//        })
+//        return cancelAction
+//    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +42,17 @@ class MissionDetailsViewController: UIViewController {
 
 }
 extension MissionDetailsViewController : UIViewControllerPreviewingDelegate{
+//    override var previewActionItems: [UIPreviewActionItem] = {
+//        let cancelAction = UIPreviewAction.init(title: "Cancel", style: .destructive, handler: { (action, UIViewController) in
+//            
+//        })
+//        return [cancelAction]
+//    }()
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         let convertedLocation = view.convert(location, to: missionImage)
+        
+        
+        
         if missionImage.bounds.contains(convertedLocation){
             let peekView =  self.storyboard?.instantiateViewController(withIdentifier: "PeekvcID") as? PeekViewController
             if let currentImage = missionImage{
@@ -45,8 +61,10 @@ extension MissionDetailsViewController : UIViewControllerPreviewingDelegate{
                     peek.label = self.delegateMission?.getMission().missionName
                 }
             }
+            
             peekView?.preferredContentSize = CGSize(width: 300, height: 300)
             previewingContext.sourceRect = missionImage.frame
+            
             return peekView
         }else{
             return nil
@@ -57,6 +75,8 @@ extension MissionDetailsViewController : UIViewControllerPreviewingDelegate{
         //present(viewControllerToCommit,animated: true)
     }
     
+    
+
     
 }
 extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSource,RocketDelegate{
@@ -92,6 +112,8 @@ extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSourc
             cell.labelTitle.text = "Details"
             if let missionDetail = self.delegateMission?.getMission().details {
                 cell.labelSubTitlte.text = missionDetail
+                cell.labelSubTitlte.numberOfLines = 0
+                cell.labelSubTitlte.lineBreakMode = .byWordWrapping
             }else{
                 cell.labelSubTitlte.text = "Don't have details."
             }
@@ -113,5 +135,6 @@ extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSourc
             
         }
     }
+    
 
 }

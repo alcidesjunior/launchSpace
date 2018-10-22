@@ -14,6 +14,12 @@ class PeekViewController: UIViewController {
     @IBOutlet weak var peekLabel: UILabel!
     var image : UIImage?
     var label : String?
+   override lazy var previewActionItems: [UIPreviewActionItem] = {
+        let cancelAction = UIPreviewAction.init(title: "Cancel", style: .destructive, handler: { (action, UIViewController) in
+            
+        })
+        return [cancelAction]
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         peekImage.image = image
@@ -21,3 +27,4 @@ class PeekViewController: UIViewController {
     }
     
 }
+
