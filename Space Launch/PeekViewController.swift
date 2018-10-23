@@ -15,9 +15,7 @@ class PeekViewController: UIViewController {
     var image : UIImage?
     var label : String?
    override lazy var previewActionItems: [UIPreviewActionItem] = {
-        let cancelAction = UIPreviewAction.init(title: "Cancel", style: .destructive, handler: { (action, UIViewController) in
-            
-        })
+        let cancelAction = UIPreviewAction.init(title: "Cancel", style: .destructive, handler: { (action, UIViewController) in})
         return [cancelAction]
     }()
     override func viewDidLoad() {

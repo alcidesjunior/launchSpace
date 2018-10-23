@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A1A451C217EA69300D688FF /* MissionRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A451B217EA69300D688FF /* MissionRowController.swift */; };
+		1A1A4524217F402200D688FF /* MissionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DCF521776F2700544832 /* MissionsAPI.swift */; };
+		1A1A4525217F404700D688FF /* MissionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DCFC21778E5000544832 /* MissionStruct.swift */; };
+		1A1A4527217F495F00D688FF /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A4526217F495F00D688FF /* ExtensionUIViewController.swift */; };
 		1AB1DC9B217761E700544832 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DC9A217761E700544832 /* AppDelegate.swift */; };
 		1AB1DC9D217761E700544832 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DC9C217761E700544832 /* ViewController.swift */; };
 		1AB1DCA0217761E700544832 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AB1DC9E217761E700544832 /* Main.storyboard */; };
@@ -25,7 +29,7 @@
 		1AB1DCF321776BBF00544832 /* MissionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DCF221776BBF00544832 /* MissionsTableViewCell.swift */; };
 		1AB1DCF621776F2700544832 /* MissionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DCF521776F2700544832 /* MissionsAPI.swift */; };
 		1AB1DCF821777EE200544832 /* MissionsAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DCF721777EE200544832 /* MissionsAPITest.swift */; };
-		1AB1DCFD21778E5000544832 /* MissionStructAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DCFC21778E5000544832 /* MissionStructAPI.swift */; };
+		1AB1DCFD21778E5000544832 /* MissionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DCFC21778E5000544832 /* MissionStruct.swift */; };
 		1AE6BD192178B584009EE049 /* MissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD182178B584009EE049 /* MissionDetailsViewController.swift */; };
 		1AE6BD1C2178B767009EE049 /* MissionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD1B2178B767009EE049 /* MissionDelegate.swift */; };
 		1AE6BD1E2178C4F0009EE049 /* MissionDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD1D2178C4F0009EE049 /* MissionDetailsTableViewCell.swift */; };
@@ -94,6 +98,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A1A451B217EA69300D688FF /* MissionRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRowController.swift; sourceTree = "<group>"; };
+		1A1A4526217F495F00D688FF /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
 		1AB1DC97217761E700544832 /* Space Launch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Space Launch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AB1DC9A217761E700544832 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AB1DC9C217761E700544832 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,7 +127,7 @@
 		1AB1DCF221776BBF00544832 /* MissionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionsTableViewCell.swift; sourceTree = "<group>"; };
 		1AB1DCF521776F2700544832 /* MissionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionsAPI.swift; sourceTree = "<group>"; };
 		1AB1DCF721777EE200544832 /* MissionsAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionsAPITest.swift; sourceTree = "<group>"; };
-		1AB1DCFC21778E5000544832 /* MissionStructAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionStructAPI.swift; sourceTree = "<group>"; };
+		1AB1DCFC21778E5000544832 /* MissionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionStruct.swift; sourceTree = "<group>"; };
 		1AE6BD182178B584009EE049 /* MissionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsViewController.swift; sourceTree = "<group>"; };
 		1AE6BD1B2178B767009EE049 /* MissionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDelegate.swift; sourceTree = "<group>"; };
 		1AE6BD1D2178C4F0009EE049 /* MissionDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsTableViewCell.swift; sourceTree = "<group>"; };
@@ -165,6 +171,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A1A451A217EA67600D688FF /* Mission */ = {
+			isa = PBXGroup;
+			children = (
+				1A1A451B217EA69300D688FF /* MissionRowController.swift */,
+			);
+			path = Mission;
+			sourceTree = "<group>";
+		};
+		1A1A4521217EB64600D688FF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1AB1DC8E217761E600544832 = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +264,8 @@
 		1AB1DCD2217761EB00544832 /* Space Launch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				1A1A4521217EB64600D688FF /* Extensions */,
+				1A1A451A217EA67600D688FF /* Mission */,
 				1AB1DCD3217761EB00544832 /* InterfaceController.swift */,
 				1AB1DCD5217761EB00544832 /* ExtensionDelegate.swift */,
 				1AB1DCD7217761EB00544832 /* NotificationController.swift */,
@@ -266,7 +289,7 @@
 		1AB1DCFB21778E3200544832 /* StructAPI */ = {
 			isa = PBXGroup;
 			children = (
-				1AB1DCFC21778E5000544832 /* MissionStructAPI.swift */,
+				1AB1DCFC21778E5000544832 /* MissionStruct.swift */,
 			);
 			path = StructAPI;
 			sourceTree = "<group>";
@@ -284,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				1AE6BD1F2178CD92009EE049 /* ExtensionImageView.swift */,
+				1A1A4526217F495F00D688FF /* ExtensionUIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -481,11 +505,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AB1DC9D217761E700544832 /* ViewController.swift in Sources */,
-				1AB1DCFD21778E5000544832 /* MissionStructAPI.swift in Sources */,
+				1AB1DCFD21778E5000544832 /* MissionStruct.swift in Sources */,
 				1AB1DC9B217761E700544832 /* AppDelegate.swift in Sources */,
 				1AB1DCF321776BBF00544832 /* MissionsTableViewCell.swift in Sources */,
 				1AE6BD192178B584009EE049 /* MissionDetailsViewController.swift in Sources */,
 				1AE6BD222179F947009EE049 /* RocketDelegate.swift in Sources */,
+				1A1A4527217F495F00D688FF /* ExtensionUIViewController.swift in Sources */,
 				1AE6BD1E2178C4F0009EE049 /* MissionDetailsTableViewCell.swift in Sources */,
 				1AE6BD242179FD59009EE049 /* RocketViewController.swift in Sources */,
 				1AE6BD202178CD92009EE049 /* ExtensionImageView.swift in Sources */,
@@ -519,7 +544,10 @@
 			files = (
 				1AB1DCD8217761EB00544832 /* NotificationController.swift in Sources */,
 				1AB1DCDA217761EB00544832 /* ComplicationController.swift in Sources */,
+				1A1A4524217F402200D688FF /* MissionsAPI.swift in Sources */,
+				1A1A451C217EA69300D688FF /* MissionRowController.swift in Sources */,
 				1AB1DCD6217761EB00544832 /* ExtensionDelegate.swift in Sources */,
+				1A1A4525217F404700D688FF /* MissionStruct.swift in Sources */,
 				1AB1DCD4217761EB00544832 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

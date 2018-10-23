@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var searchBarMission: UISearchBar!
     var loading = UIActivityIndicatorView(style: .gray)
     var missions: [MissionStruct] = []
@@ -23,7 +22,7 @@ class ViewController: UIViewController {
           missionTableView.rowHeight = 70
         }
     }
-    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,34 +31,18 @@ class ViewController: UIViewController {
         missionTableView.dataSource = self
         searchBarMission.delegate = self
         
-        self.spinner()
+        self.view.spinner(loading)
         self.loading.startAnimating()
+        
         MissionsAPI.sharedInstance.getMissions(completion: { missionsJson in
             self.missions = missionsJson
             self.missionTableView.reloadData()
             self.loading.stopAnimating()
         })
-        
-        
-        
+        self.searchBarMission.endEditing(true)
     }
-    func addTap(){
-        print("adicionou===========")
-        view.addGestureRecognizer(self.tap)
-    }
-    func removeTap(){
-        print("==========removeu")
-        view.removeGestureRecognizer(self.tap)
-    }
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
-    func spinner(){
-        loading.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(loading)
-        loading.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loading.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    }
+    
+    
     
 }
 
@@ -67,7 +50,6 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, MissionDele
     func getMission() -> MissionStruct {
         return self.selectedMission!
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchActive) {
             return self.filtered.count
@@ -89,20 +71,23 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, MissionDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searchActive{
+        self.view.endEditing(true)
+        if self.searchActive == true{
+            print("SELECTED==========")
             self.selectedMission = self.filtered[indexPath.item]
         }else{
+            print("putz===============")
             self.selectedMission = self.missions[indexPath.item]
         }
 
         guard let controller = storyboard?.instantiateViewController(withIdentifier: "MissionDetails") as? MissionDetailsViewController else {return}
         controller.delegateMission = self
+
         navigationController?.pushViewController(controller, animated: true)
-        
     }
     
+    
 }
-
 
 extension ViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -110,21 +95,22 @@ extension ViewController: UISearchBarDelegate{
         self.filtered = missions.filter({ (text) -> Bool in
             return text.missionName!.range(of: searchText, options: [ .caseInsensitive]) != nil
         })
-        searchActive = !self.filtered.isEmpty
+        self.searchActive = !self.filtered.isEmpty
+        print(searchActive)
         self.missionTableView.reloadData()
     }
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true
+//        searchActive = true
     }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false
+//        self.searchActive = false
         
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
+//        self.searchActive = false
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false
+//        searchActive = false
     }
     
 }

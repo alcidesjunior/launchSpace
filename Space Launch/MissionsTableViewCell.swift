@@ -31,13 +31,21 @@ class MissionsTableViewCell: UITableViewCell {
     
     private func updateView() {
         if searchWasActivate {
-            missionName.text = filteredMission?.missionName
+            missionName.text = (filteredMission?.missionName)
             missionYear.text = filteredMission?.launchYear
-            imgDetailsMission.downloadedFrom(link: filteredMission?.links?.missionPatchSmall)
+            if let missionImgUrl = filteredMission?.links?.missionPatchSmall{
+                imgDetailsMission.downloadedFrom(link: missionImgUrl)
+            }else{
+                imgDetailsMission.image = UIImage(named: "noimage")
+            }
         }else{
             missionName.text = mission?.missionName
             missionYear.text = mission?.launchYear
-            imgDetailsMission.downloadedFrom(link: mission?.links?.missionPatchSmall)
+            if let missionImgUrl = mission?.links?.missionPatchSmall{
+                imgDetailsMission.downloadedFrom(link: missionImgUrl)
+            }else{
+                imgDetailsMission.image = UIImage(named: "noimage")
+            }
         }
     }
     

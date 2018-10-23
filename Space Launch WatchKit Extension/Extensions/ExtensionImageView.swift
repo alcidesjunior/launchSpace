@@ -1,19 +1,15 @@
 //
 //  ExtensionImageView.swift
-//  Space Launch
+//  Space Launch WatchKit Extension
 //
-//  Created by Alcides Junior on 18/10/18.
+//  Created by Alcides Junior on 22/10/18.
 //  Copyright © 2018 Alcides Junior. All rights reserved.
 //
+import Foundation
+import WatchKit
 
-import UIKit
-
-extension UIImageView {
-    
+extension WKInterfaceImage {
     func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
-        var loading = UIActivityIndicatorView(style: .white)
-        self.spinner(loading)
-        loading.startAnimating()
         contentMode = mode
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
@@ -23,9 +19,7 @@ extension UIImageView {
                 let image = UIImage(data: data)
                 else { return }
             DispatchQueue.main.async() {
-                    self.image = image
-                
-                loading.stopAnimating()
+                self.image = image
             }
             }.resume()
     }

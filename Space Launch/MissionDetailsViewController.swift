@@ -12,24 +12,23 @@ class MissionDetailsViewController: UIViewController {
 
     var delegateMission: MissionDelegate?
     @IBOutlet weak var missionImage: UIImageView!
+    var loading = UIActivityIndicatorView(style: .gray)
     @IBOutlet weak var missionDetailsTableView: UITableView!{
         didSet{
             missionDetailsTableView.rowHeight = 70
         }
     }
-    var selectedRocket: MissionStruct?
-//    lazy override var previewActionItems: [UIPreviewActionItem] = {
-//        let cancelAction = UIPreviewAction.init(title: "Cancel", style: .cancel, handler: { (UIPreviewAction, UIViewController) in
-//            self.dismiss()
-//        })
-//        return cancelAction
-//    }
     
+    var selectedRocket: MissionStruct?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.delegateMission?.getMission().missionName
-        self.missionImage.downloadedFrom(link: self.delegateMission?.getMission().links?.missionPatch)
+        if let missionImgUrl = self.delegateMission?.getMission().links?.missionPatch{
+            self.missionImage.downloadedFrom(link: missionImgUrl)
+        }else{
+            self.missionImage.image = UIImage(named: "noimage")
+        }
         missionDetailsTableView.delegate = self
         missionDetailsTableView.dataSource = self
 //        register for use in peek and pop
@@ -42,12 +41,7 @@ class MissionDetailsViewController: UIViewController {
 
 }
 extension MissionDetailsViewController : UIViewControllerPreviewingDelegate{
-//    override var previewActionItems: [UIPreviewActionItem] = {
-//        let cancelAction = UIPreviewAction.init(title: "Cancel", style: .destructive, handler: { (action, UIViewController) in
-//            
-//        })
-//        return [cancelAction]
-//    }()
+
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         let convertedLocation = view.convert(location, to: missionImage)
         
@@ -73,12 +67,12 @@ extension MissionDetailsViewController : UIViewControllerPreviewingDelegate{
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         //present(viewControllerToCommit,animated: true)
+        //usar push para
+       // navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
     }
     
-    
-
-    
 }
+//CONFIGURACOES DE TABLEVIEW
 extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSource,RocketDelegate{
     func getRocketId() -> MissionStruct {
         return self.selectedRocket!
