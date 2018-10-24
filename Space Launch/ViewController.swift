@@ -41,7 +41,27 @@ class ViewController: UIViewController {
         })
         self.searchBarMission.endEditing(true)
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if !CheckInternet.Connection(){
+            
+            self.Alert(Message: "Your Device is not connected with internet")
+            
+        }
+        
+    }
     
+    func Alert (Message: String){
+        
+        let alert = UIAlertController(title: "Alert", message: Message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: {(alert: UIAlertAction!) in
+            exit(1)
+            
+        }))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     
     
 }
@@ -94,7 +114,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, MissionDel
         let text = missions[indexPath.row]
         
         let controller = storyboard?.instantiateViewController(withIdentifier: "MissionDetails") as? MissionDetailsViewController
-        self.selectedMission = text
+        if self.searchActive == true{
+            print("SELECTED==========")
+            self.selectedMission = self.filtered[indexPath.item]
+        }else{
+            print("putz===============")
+            self.selectedMission = text
+        }
         controller!.delegateMission = self
         
         return controller!

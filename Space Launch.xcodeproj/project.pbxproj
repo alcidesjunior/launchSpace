@@ -30,6 +30,7 @@
 		1AB1DCF621776F2700544832 /* MissionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DCF521776F2700544832 /* MissionsAPI.swift */; };
 		1AB1DCF821777EE200544832 /* MissionsAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DCF721777EE200544832 /* MissionsAPITest.swift */; };
 		1AB1DCFD21778E5000544832 /* MissionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1DCFC21778E5000544832 /* MissionStruct.swift */; };
+		1ADBDC4C2180B7A0006EA6BD /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADBDC4B2180B7A0006EA6BD /* CheckInternet.swift */; };
 		1AE6BD192178B584009EE049 /* MissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD182178B584009EE049 /* MissionDetailsViewController.swift */; };
 		1AE6BD1C2178B767009EE049 /* MissionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD1B2178B767009EE049 /* MissionDelegate.swift */; };
 		1AE6BD1E2178C4F0009EE049 /* MissionDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE6BD1D2178C4F0009EE049 /* MissionDetailsTableViewCell.swift */; };
@@ -128,6 +129,7 @@
 		1AB1DCF521776F2700544832 /* MissionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionsAPI.swift; sourceTree = "<group>"; };
 		1AB1DCF721777EE200544832 /* MissionsAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionsAPITest.swift; sourceTree = "<group>"; };
 		1AB1DCFC21778E5000544832 /* MissionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionStruct.swift; sourceTree = "<group>"; };
+		1ADBDC4B2180B7A0006EA6BD /* CheckInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 		1AE6BD182178B584009EE049 /* MissionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsViewController.swift; sourceTree = "<group>"; };
 		1AE6BD1B2178B767009EE049 /* MissionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDelegate.swift; sourceTree = "<group>"; };
 		1AE6BD1D2178C4F0009EE049 /* MissionDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsTableViewCell.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		1AB1DC99217761E700544832 /* Space Launch */ = {
 			isa = PBXGroup;
 			children = (
+				1ADBDC4A2180B77D006EA6BD /* Helpers */,
 				1AE6BD29217A042A009EE049 /* Extensions */,
 				1AE6BD1A2178B74C009EE049 /* Protocols */,
 				1AB1DCF421776F0900544832 /* API */,
@@ -292,6 +295,14 @@
 				1AB1DCFC21778E5000544832 /* MissionStruct.swift */,
 			);
 			path = StructAPI;
+			sourceTree = "<group>";
+		};
+		1ADBDC4A2180B77D006EA6BD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1ADBDC4B2180B7A0006EA6BD /* CheckInternet.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		1AE6BD1A2178B74C009EE049 /* Protocols */ = {
@@ -508,6 +519,7 @@
 				1AB1DCFD21778E5000544832 /* MissionStruct.swift in Sources */,
 				1AB1DC9B217761E700544832 /* AppDelegate.swift in Sources */,
 				1AB1DCF321776BBF00544832 /* MissionsTableViewCell.swift in Sources */,
+				1ADBDC4C2180B7A0006EA6BD /* CheckInternet.swift in Sources */,
 				1AE6BD192178B584009EE049 /* MissionDetailsViewController.swift in Sources */,
 				1AE6BD222179F947009EE049 /* RocketDelegate.swift in Sources */,
 				1A1A4527217F495F00D688FF /* ExtensionUIViewController.swift in Sources */,
