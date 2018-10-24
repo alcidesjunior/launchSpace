@@ -70,6 +70,7 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, MissionDele
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.view.endEditing(true)
         if self.searchActive == true{
@@ -86,7 +87,12 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, MissionDele
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    
+}
+
+extension ViewController : UIScrollViewDelegate{
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
 }
 
 extension ViewController: UISearchBarDelegate{
