@@ -79,11 +79,13 @@ extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = missionDetailsTableView.dequeueReusableCell(withIdentifier: "detailsMissionCellID") as! MissionDetailsTableViewCell
+        cell.labelSubTitlte.numberOfLines = 0
+        cell.labelSubTitlte.lineBreakMode = .byWordWrapping
         switch indexPath.row {
         case 0:
             let date = Date(timeIntervalSince1970: Double((self.delegateMission?.getMission().launchDateUnix)!))
@@ -97,21 +99,23 @@ extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSourc
             cell.labelSubTitlte.text = launchDate
             
         case 1:
-            cell.labelTitle.text = "Max tentative precision"
-            cell.labelSubTitlte.text = self.delegateMission?.getMission().tentativeMaxPrecision
+            cell.labelTitle.text = "Launch Site"
+            cell.labelSubTitlte.text = self.delegateMission?.getMission().launchSite?.siteNameLong
         case 2:
             cell.labelTitle.text = "Launch success"
             cell.labelSubTitlte.text = (self.delegateMission?.getMission().launchSuccess==true ? "Yes" : "No")
-        case 3:
+        case 4:
             cell.labelTitle.text = "Details"
             if let missionDetail = self.delegateMission?.getMission().details {
                 cell.labelSubTitlte.text = missionDetail
-                cell.labelSubTitlte.numberOfLines = 0
-                cell.labelSubTitlte.lineBreakMode = .byWordWrapping
+                
             }else{
                 cell.labelSubTitlte.text = "Don't have details."
             }
-        case 4:
+        case 3:
+            cell.labelTitle.text = "Customer"
+            cell.labelSubTitlte.text = self.delegateMission?.getMission().rocket?.secondStage?.payloads.first??.customers.first as? String
+        case 5:
             cell.labelTitle.text = "About Rocket"
             cell.labelSubTitlte.text = ""
             cell.accessoryType = .disclosureIndicator
@@ -121,7 +125,7 @@ extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSourc
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.item == 4{
+        if indexPath.item == 5{
             self.selectedRocket = self.delegateMission?.getMission()
             guard let RocketController = storyboard?.instantiateViewController(withIdentifier: "RocketViewController") as? RocketViewController else {return}
             RocketController.delegateRocket = self.selectedRocket
