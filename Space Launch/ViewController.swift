@@ -23,7 +23,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +32,7 @@ class ViewController: UIViewController {
         
         self.view.spinner(loading)
         self.loading.startAnimating()
+        registerForPreviewing(with: self, sourceView: missionTableView)
         
         MissionsAPI.sharedInstance.getMissions(completion: { missionsJson in
             self.missions = missionsJson
@@ -46,10 +46,14 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: UITableViewDelegate,UITableViewDataSource, MissionDelegate{
+extension ViewController: UITableViewDelegate, UITableViewDataSource, MissionDelegate, UIViewControllerPreviewingDelegate{
+    
+    
+    
     func getMission() -> MissionStruct {
         return self.selectedMission!
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchActive) {
             return self.filtered.count
@@ -70,7 +74,6 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, MissionDele
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.view.endEditing(true)
         if self.searchActive == true{
@@ -87,14 +90,38 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource, MissionDele
         navigationController?.pushViewController(controller, animated: true)
     }
     
+    private func createDetailViewControllerIndexPath(indexPath: IndexPath) -> MissionDetailsViewController {
+        let text = missions[indexPath.row]
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "MissionDetails") as? MissionDetailsViewController
+        self.selectedMission = text
+        controller!.delegateMission = self
+        
+        return controller!
+        
+        
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = missionTableView.indexPathForRow(at: location) else {
+            return nil
+        }
+        let detailViewController = createDetailViewControllerIndexPath(indexPath: indexPath)
+        
+        return detailViewController
+    }
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
+    }
+    
 }
-
+//para esconder o teclado quando o usuário pesquisar e escrolar a tela
 extension ViewController : UIScrollViewDelegate{
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
 }
-
+//lógica para procurar uma palavra em uma tableview
 extension ViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -105,18 +132,4 @@ extension ViewController: UISearchBarDelegate{
         print(searchActive)
         self.missionTableView.reloadData()
     }
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        searchActive = true
-    }
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        self.searchActive = false
-        
-    }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        self.searchActive = false
-    }
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchActive = false
-    }
-    
 }
