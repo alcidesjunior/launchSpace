@@ -116,7 +116,7 @@ extension MissionDetailsViewController: UITableViewDelegate,UITableViewDataSourc
             cell.labelTitle.text = "Customer"
             cell.labelSubTitlte.text = self.delegateMission?.getMission().rocket?.secondStage?.payloads.first??.customers.first as? String
         case 5:
-            cell.labelTitle.text = "About Rocket"
+            cell.labelTitle.text = "See more about Rocket"
             cell.labelSubTitlte.text = ""
             cell.accessoryType = .disclosureIndicator
         default:
